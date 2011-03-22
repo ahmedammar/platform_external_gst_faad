@@ -28,3 +28,18 @@ libfaad_la_SOURCES = bits.c cfft.c decoder.c drc.c \
 		     codebook/hcb_1.h codebook/hcb_2.h codebook/hcb_3.h codebook/hcb_4.h \
 		     codebook/hcb_5.h codebook/hcb_6.h codebook/hcb_7.h codebook/hcb_8.h \
 		     codebook/hcb_9.h codebook/hcb_10.h codebook/hcb_11.h codebook/hcb_sf.h
+
+
+Android.mk: Makefile.am
+	androgenizer \
+	-:PROJECT libfaad -:SHARED libfaad \
+	 -:TAGS eng debug \
+         -:REL_TOP $(top_srcdir) -:ABS_TOP $(abs_top_srcdir) \
+	 -:SOURCES $(libfaad_la_SOURCES) \
+	 	   $(EXTRA_libfaad_la_SOURCES) \
+	 -:CFLAGS $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CFLAGS) \
+	 -:LDFLAGS $(libfaad_la_LDFLAGS) -lz \
+	           $(libfaad_la_LIBADD) \
+	 -:HEADERS $(include_HEADERS) \
+	 -:PASSTHROUGH LOCAL_ARM_MODE:=arm \
+	> $@
