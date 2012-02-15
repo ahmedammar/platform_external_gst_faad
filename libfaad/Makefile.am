@@ -33,7 +33,7 @@ libfaad_la_SOURCES = bits.c cfft.c decoder.c drc.c \
 Android.mk: Makefile.am
 	androgenizer \
 	-:PROJECT libfaad -:SHARED libfaad \
-	 -:TAGS eng debug \
+	 -:TAGS user eng debug \
          -:REL_TOP $(top_srcdir) -:ABS_TOP $(abs_top_srcdir) \
 	 -:SOURCES $(libfaad_la_SOURCES) \
 	 	   $(EXTRA_libfaad_la_SOURCES) \
